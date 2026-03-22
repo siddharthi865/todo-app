@@ -3,17 +3,22 @@ import { create } from "zustand";
 
 import type { Todo } from "../types/todo";
 
+export type Filter = "all" | "active" | "completed";
+
 interface TodoState {
   todos: Todo[];
+  filter: Filter;
   addTodo: (title: string) => void;
   deleteTodo: (id: string) => void;
   toggleTodo: (id: string) => void;
+  setFilter: (filter: Filter) => void;
 }
 
 export const useTodoStore = create<TodoState>()(
   persist(
     (set) => ({
       todos: [],
+      filter: "all",
 
       addTodo: (title) =>
         set((state) => ({
@@ -39,7 +44,12 @@ export const useTodoStore = create<TodoState>()(
             todo.id === id ? { ...todo, completed: !todo.completed } : todo,
           ),
         })),
+
+      setFilter: (filter) => set({ filter }),
     }),
-    { name: "todo-storage", partialize: (state) => ({ todos: state.todos }) },
+    {
+      name: "todo-storage",
+      partialize: (state) => ({ todos: state.todos, filter: state.filter }),
+    },
   ),
 );
