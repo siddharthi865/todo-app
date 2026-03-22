@@ -12,6 +12,8 @@ interface TodoState {
   deleteTodo: (id: string) => void;
   toggleTodo: (id: string) => void;
   setFilter: (filter: Filter) => void;
+  reorderTodos: (activeId: string, overId: string) => void;
+  editTodo: (id: string, title: string) => void;
 }
 
 export const useTodoStore = create<TodoState>()(
@@ -46,6 +48,23 @@ export const useTodoStore = create<TodoState>()(
         })),
 
       setFilter: (filter) => set({ filter }),
+
+      reorderTodos: (activeId, overId) =>
+        set((state) => {
+          const oldIndex = state.todos.findIndex((t) => t.id === activeId);
+          const newIndex = state.todos.findIndex((t) => t.id === overId);
+
+          const updated = [...state.todos];
+          const [moved] = updated.splice(oldIndex, 1);
+          updated.splice(newIndex, 0, moved);
+
+          return { todos: updated };
+        }),
+
+      editTodo: (id, title) =>
+        set((state) => ({
+          todos: state.todos.map((t) => (t.id === id ? { ...t, title } : t)),
+        })),
     }),
     {
       name: "todo-storage",
