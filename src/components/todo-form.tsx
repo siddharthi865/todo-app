@@ -35,7 +35,9 @@ export function TodoForm() {
         {...register("title")}
         aria-label="Task input"
       />
-      <Button type="submit">Add</Button>
+      <Button className="cursor-pointer" type="submit">
+        Add
+      </Button>
 
       {errors.title && (
         <p className="text-red-500 text-sm">{errors.title.message}</p>

@@ -11,6 +11,7 @@ export function TodoFilters() {
     <div className="flex justify-center gap-2 mt-4">
       {filters?.map((f) => (
         <Button
+          className="cursor-pointer"
           key={f}
           variant={filter === f ? "default" : "outline"}
           size="sm"

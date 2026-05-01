@@ -6,7 +6,12 @@ export function ThemeToggle() {
   const { theme, toggleTheme } = useThemeStore();
 
   return (
-    <Button variant="outline" size="icon" onClick={toggleTheme}>
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={toggleTheme}
+      className="cursor-pointer"
+    >
       {theme === "light" ? <Moon /> : <Sun />}
     </Button>
   );

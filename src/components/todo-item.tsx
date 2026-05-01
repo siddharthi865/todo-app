@@ -52,6 +52,7 @@ export function TodoItem({ todo }: Props) {
         </span>
 
         <Checkbox
+          className="cursor-pointer"
           checked={todo.completed}
           onCheckedChange={() => toggleTodo(todo.id)}
         />
@@ -77,6 +78,7 @@ export function TodoItem({ todo }: Props) {
       </div>
 
       <Button
+        className="cursor-pointer"
         variant="ghost"
         size="icon"
         onClick={() => deleteTodo(todo.id)}
