@@ -1,106 +1,115 @@
-# 📝 Todo App (Modern React + TypeScript)
+# React To-Do List
 
-A sleek, production-ready Todo List application built with **modern React architecture**, featuring drag & drop, inline editing, and persistent state.
+A small to-do application built with React, TypeScript, Vite, and Tailwind CSS.
 
----
+## Features
 
-## ✨ Features
+- Add tasks
+- Mark tasks as complete
+- Mark completed tasks as incomplete
+- Delete tasks
+- Display task statistics
+- Persist tasks in localStorage
+- Responsive layout
+- Accessible form controls and buttons
+- TypeScript type safety
 
-### ✅ Core Functionality
+## React concepts demonstrated
 
-- ➕ Add new tasks with validation
-- ❌ Delete tasks instantly
-- ✔️ Mark tasks as complete/incomplete
-- ✏️ Inline editing
+- `useState`
+- `useEffect`
+- Props
+- Controlled inputs
+- Form event handling
+- Array `.map()`
+- Array `.filter()`
+- Immutable state updates
+- Conditional rendering
+- Component composition
 
-### 🎯 Advanced Features
+## Requirements
 
-- 🧲 Drag & drop reordering (smooth UX)
-- 🔍 Filter tasks:
-  - All
-  - Active
-  - Completed
+- Node.js 20.19+ or 22.12+
+- npm
 
-- 💾 LocalStorage persistence (auto-save)
-- 🌙 Dark / Light mode toggle
+## Installation
 
----
-
-## 🧱 Tech Stack
-
-- ⚡ **Vite** – Lightning-fast build tool
-- ⚛️ **React (Latest)** – Modern hooks & patterns
-- 🔷 **TypeScript (Strict Mode)**
-- 🎨 **Tailwind CSS v4** – Utility-first styling
-- 🧩 **shadcn/ui** – Accessible UI components
-- 🐻 **Zustand** – Lightweight state management
-- 📝 **React Hook Form + Zod** – Form validation
-- 🧲 **@dnd-kit** – Drag & drop system
-- 🎯 **Lucide React** – Icon library
-
----
-
-## 📁 Project Structure
-
-```
-src/
-├── app.tsx
-├── routes/
-├── components/
-│   ├── ui/
-│   ├── todo-form.tsx
-│   ├── todo-item.tsx
-│   ├── todo-list.tsx
-│   ├── todo-filters.tsx
-│   └── theme-toggle.tsx
-├── stores/
-│   ├── todo-store.ts
-│   └── theme-store.ts
-├── types/
-├── lib/
-```
-
----
-
-## 🚀 Getting Started
-
-### 1. Install dependencies
+Clone or create the project directory, then install the dependencies:
 
 ```bash
 npm install
 ```
 
-### 2. Run development server
+## Development
+
+Start the Vite development server:
 
 ```bash
 npm run dev
 ```
 
-### 3. Open in browser
+Open the local URL shown by Vite in your browser.
 
+## Type checking
+
+```bash
+npm run typecheck
 ```
-http://localhost:5173
-```
 
----
-
-## 🏗 Build for Production
+## Production build
 
 ```bash
 npm run build
 ```
 
-Preview production build:
+The optimized production files will be generated in:
+
+```text
+dist/
+```
+
+## Preview the production build
 
 ```bash
 npm run preview
 ```
 
----
+## Project structure
 
-## 🧠 Key Concepts Used
+```text
+src/
+├── components/
+│   ├── TodoForm.tsx
+│   ├── TodoItem.tsx
+│   ├── TodoList.tsx
+│   └── TodoStats.tsx
+├── types/
+│   └── task.ts
+├── utils/
+│   └── taskStorage.ts
+├── App.tsx
+├── index.css
+├── main.tsx
+└── vite-env.d.ts
+```
 
-- **Zustand Persist Middleware** → Seamless LocalStorage sync
-- **Derived State Filtering** → Clean and scalable logic
-- **Drag Handle Pattern** → Prevents UI conflicts
-- **Component Isolation** → Better performance & maintainability
+## Data model
+
+Each task uses the following shape:
+
+```ts
+interface Task {
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: string;
+}
+```
+
+Tasks are stored in the browser under the localStorage key:
+
+```text
+react-todo-list.tasks
+```
+
+No backend or database is required.
